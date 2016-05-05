@@ -31,28 +31,4 @@ class User extends BaseUser {
         // your own logic
     }
 
-
-    /**
-     * Set youtubeChannel
-     *
-     * @param \AppBundle\Entity\YoutubeChannel $youtubeChannel
-     *
-     * @return User
-     */
-    public function setYoutubeChannel(\AppBundle\Entity\YoutubeChannel $youtubeChannel = null)
-    {
-        $this->youtubeChannel = $youtubeChannel;
-
-        return $this;
-    }
-
-    /**
-     * Get youtubeChannel
-     *
-     * @return \AppBundle\Entity\YoutubeChannel
-     */
-    public function getYoutubeChannel()
-    {
-        return $this->youtubeChannel;
-    }
 }

@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>My Youtube Channel</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">
+
+                {% for name in app.session.flashbag.get('channelNameError') %}
+                    <div class="alert alert-danger">Channel "{{name}}" could not be saved.</div>
+                {% endfor %}
+
+                <form action="{{ path("saveChannelSubmit") }}" method="post">
+
+                    <div class="form-group">
+                        <label for="channelname">{{ 'Channel Name'|trans }}</label>
+                        <input type="text" class="form-control" id="channelname" name="_channelname" required="required" placeholder="Channel name"/>
+                    </div>
+                    <sup>Retrieve from https://www.youtube.com/user/<strong>{channel-name}</strong></sup>
+                    
+                    <br>
+                    <br>
+                    <input class="btn btn-default" type="submit" id="_submit" name="_submit" value="{{ 'Save channel'|trans }}" />
+                </form>
+
+                <br>
+                <br>
+            </div>
+        </div>
+        {% if channel %}
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2>Channel Videos ({{channel.username}})</h2>
+                </div>
+            </div>
+            <div class="row">
+                {% for v in latestVideos %}
+                    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+                        <a href="https://www.youtube.com/watch?v={{v.id.videoId}}" class="thumbnail" style="margin-bottom: 5px;">
+                            <img src="{{v.snippet.thumbnails.high.url}}" alt="Image of {{v.snippet.title}}">
+                        </a>
+                        <div style="height: 80px;margin-bottom:20px;">
+                            <a href="https://www.youtube.com/watch?v={{v.id.videoId}}">
+                                <h4>{{v.snippet.title}}</h4>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}

@@ -5,6 +5,11 @@
         <div class="row">
             <div class="col-xs-12">
                 <h2>Home</h2>
+
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <a class="btn btn-default" href="{{ path('fos_user_change_password') }}">{{ 'Change Password'|trans({}, 'FOSUserBundle') }}</a>
+                    <a class="btn btn-default" href="{{ path('myChannel') }}">{{ 'My Youtube Channel'|trans({}, 'FOSUserBundle') }}</a>
+                {% endif %}
             </div>
         </div>
     </div>
